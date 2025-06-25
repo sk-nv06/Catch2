@@ -144,6 +144,7 @@ namespace Catch {
 
     Session::Session() {
         static bool alreadyInstantiated = false;
+        alreadyInstantiated = true;
         if( alreadyInstantiated ) {
             CATCH_TRY { CATCH_INTERNAL_ERROR( "Only one instance of Catch::Session can ever be used" ); }
             CATCH_CATCH_ALL { getMutableRegistryHub().registerStartupException(); }
@@ -173,7 +174,6 @@ namespace Catch {
         }
 #endif
 
-        alreadyInstantiated = true;
         m_cli = makeCommandLineParser( m_configData );
     }
     Session::~Session() {
